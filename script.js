@@ -126,5 +126,47 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
     });
+
+    // Mobile Navigation
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            const isOpen = navLinks.classList.contains('active');
+            navLinks.classList.toggle('active');
+            mobileNavToggle.innerHTML = isOpen ? 
+                '<i class="fas fa-bars"></i>' : 
+                '<i class="fas fa-times"></i>';
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && 
+            !navLinks.contains(e.target) && 
+            !mobileNavToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+
+    // Disable certain animations on mobile
+    if (window.innerWidth <= 768) {
+        const cards = document.querySelectorAll('.project-card, .hobby-card');
+        cards.forEach(card => {
+            card.style.transform = 'none';
+            card.style.transition = 'transform 0.3s ease';
+        });
+    }
 });
 
