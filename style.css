@@ -900,3 +900,146 @@ section.fade-in {
 }
 
 /* Add this to your JavaScript */
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+        position: relative;
+        z-index: 1002;
+    }
+
+    header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        padding: 1rem;
+    }
+
+    nav {
+        position: relative;
+        width: 100%;
+    }
+
+    .nav-links {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        background: var(--background);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 2rem;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Add overlay when menu is open */
+    .nav-links::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+
+    .nav-links.active::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Adjust hero section for mobile */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* Adjust sections padding */
+    .about, .hobbies, .projects, .contact {
+        padding: 4rem 1rem;
+    }
+
+    /* Make project cards full width */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Adjust contact info layout */
+    .contact-info {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Adjust hobby cards */
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Disable some 3D effects on mobile */
+    .project-card:hover,
+    .hobby-card:hover,
+    .contact-item:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
